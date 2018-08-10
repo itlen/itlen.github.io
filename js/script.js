@@ -57,9 +57,6 @@
 	};
 
 	document.bind('.col','click',function(e){
-		
-		alert('123456');
-
 		if(this.classList.contains('modal')) return;
 		this.addClass('modal')
 			.parents('.row, body')
@@ -89,15 +86,9 @@
 	window.addEventListener('hashchange',()=>{
 		var h = this.location.hash.split('/');
 		switch(h[1]){
-			case 'posts': {
-				getDataFromUrl('posts');
-				break;
-			}
-			case 'post': {
-				getDataFromUrl(h[2]);
-				break;
-			}
-			default: document.body.first('.posts').removeClass('active').innerHTML = ''; break;
+			case 'posts':getDataFromUrl('posts');break;
+			case 'post': getDataFromUrl(h[2]);break;
+			default: renderData(); break;
 		}
 	});
 
@@ -111,23 +102,27 @@
 function renderPostsList(data){
 
 	let post_wrapper = document.body.first('.posts');
-	post_wrapper.innerHTML = '';
+	post_wrapper.removeClass('active').innerHTML = '';
 
 	let ul = document.createElement('ul');
+	ul.addClass('posts-list');
 
 	data.forEach(item=>{
-	let li = document.createElement('li');
-	let h2 = document.createElement('h2');
-	let a = document.createElement('a');
-	let div = document.createElement('div');
+		let li = document.createElement('li');
+		li.addClass('posts-list-item');
+
+		let h2 = document.createElement('h2');
+
+		let a = document.createElement('a');
+		let div = document.createElement('div');
 		h2.innerText = item.title;
 		a.setAttribute('href','post/'+item.id);
 		a.innerText = 'read more';
 		a.addEventListener('click',function(e){
 			e.preventDefault();
-				let url = '/'+this.getAttribute('href');
-				window.location.hash = url;
+			window.location.hash = '/'+this.getAttribute('href');
 		});
+		div.addClass('post-spoiler');
 		div.innerHTML = item.body;
 
 		li.appendChild(h2);
@@ -138,16 +133,19 @@ function renderPostsList(data){
 
 	});
 	window.location.hash = '/posts';
+	document.first('main').addClass('hidden');
 	post_wrapper.addClass('active').appendChild(ul);
 }
 
 function renderPost(data){
 
 	let post_wrapper = document.body.first('.posts');
-	post_wrapper.innerHTML = '';
+	post_wrapper.removeClass('active').innerHTML = '';
 
 	let h2 = document.createElement('h2');
+	h2.addClass('post-header');
 	let div = document.createElement('div');
+	div.addClass('post-body');
 		
 	h2.innerText = data[0].title;
 
@@ -156,13 +154,18 @@ function renderPost(data){
 
 	window.location.hash = '/post/'+data[0].id;
 
+	document.first('main').addClass('hidden');
 	post_wrapper.addClass('active').appendChild(div);
 
 }
 
 function renderData(data) {
-	if(data.length>1) renderPostsList(data);
-	else renderPost(data);
+	if(window.location.hash == '') {
+		document.first('main').removeClass('hidden');
+		return;
+	}
+	if(data.length>1) {renderPostsList(data); return;}
+	else {renderPost(data); return;}
 }
 
 function getDataFromUrl(url){
