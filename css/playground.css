@@ -1,0 +1,221 @@
+main {
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1600px;
+    position: relative;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;}
+
+.row {
+    margin: 0 auto;
+    padding: 8px 0;
+    position: relative;
+    flex: 1 0 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;}
+
+.row.row-sb {justify-content: space-between;}
+.row.row-sa {justify-content: space-around;}
+.row.row-fs {justify-content: flex-start;}
+.row.mr {margin-right: 0;}
+.row.ml {margin-left: 0;}
+
+
+main {
+    /*max-width: 680px;*/
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    /*display: none;*/
+}
+
+main.active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    max-width: 100%;
+    z-index: 20;
+    background: white;
+}
+
+.row {
+    padding: 0;
+    min-height: 120px;
+    flex: 1 0 100%; 
+}
+
+.active .row:not(.active),
+.active .col:not(.active) {
+    display: none;
+}
+
+.row.active {
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 1;
+    min-height: 100%;
+    max-width: 680px;
+    justify-content: flex-start;
+}
+
+
+.short-row {
+    max-width: 540px;
+}
+
+.col {
+    margin: 0;padding: 1em;
+    position: relative;
+    text-align: center;
+    font-size: 10px;
+    line-height: 14px;
+    flex: 0 0 90px;
+    width: 90px;
+    height: 90px;
+    z-index: 10;
+    order: 2;
+    box-sizing: border-box;
+}
+
+.col.as-fs{align-self: flex-start;}
+.col.as-fe{align-self: flex-end;}
+.col.as-c{align-self: center;}
+
+.col.f-auto {
+    flex: 1 0 auto;
+    width: auto;
+    height: auto;
+}
+
+.col.f-auto:before{
+    display: none;
+}
+
+.col:hover {
+    cursor: pointer;
+    z-index: 11
+}
+
+.row.active .col.active {
+    flex: 1 0 100%;
+    text-align: left;
+    align-self: flex-start;
+    width: auto;
+    height: auto;
+    cursor: auto;
+    will-change:transform;
+}
+
+.col.active span {
+    padding: 0;
+}
+
+.col:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 100%;
+    transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    border: 2px solid rgba(58, 111, 229, 0.5);
+    z-index: -1;
+    background-color: white;
+}
+
+
+.col.active:before {
+    width: 180px;
+    height: 180px;
+    transform: scale(4.4,4.4) translateX(30px) translateY(15px);
+    box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2);
+}
+
+
+.col:not(.active):hover:before {
+    transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    box-shadow: 0 8px 17px 2px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);
+    transform: scale(2,2);
+    border: 1px solid rgba(58, 111, 229, 0.4);
+}
+
+.col span {
+    display: block;
+    padding: 30% 0;
+}
+
+.col.active span {
+    display: none;
+}
+
+.container {
+    overflow: hidden;
+    width: 0;
+    height: 0;
+    transform: scale(0,0);
+}
+
+.container h1,
+.container p {
+    transform: scale(0,0);
+}
+
+
+.col.active .container h1 {
+    transition: all .5s .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transform: scale(1,1);   
+}
+
+.col.active .container p {
+    transition: all .3s .8s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transform: scale(1,1);   
+}
+
+
+.col.active .container {
+    width: auto;
+    height: auto;
+    transform: scale(1,1);   
+}
+
+.col p {
+    max-width: 480px;
+    font-size: 1.4em;
+    line-height: 1.6;
+}
+
+.close-control {
+    transform: scale(0,0);
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.close-control.active {
+    width: 64px;
+    color: #fb0b64;
+    transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transform: scale(1,1);
+    padding: .5em 1em;
+    box-shadow: 0 0 0 #fb0b64 inset;
+    cursor: pointer;
+    z-index: 30;
+    line-height: 1em;
+    font-size: 12px;
+}
+
+.close-control:hover {
+    color:white;
+    box-shadow: 0 -200px 0 #fb0b64 inset;
+}
