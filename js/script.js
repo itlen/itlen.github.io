@@ -100,6 +100,7 @@ function renderPostsList(data){
 
 	let post_wrapper = document.body.first('.posts');
 	post_wrapper.removeClass('active').innerHTML = '';
+	post_wrapper.addClass('active');
 
 	let ul = document.createElement('ul');
 	ul.addClass('posts-list');
@@ -132,13 +133,14 @@ function renderPostsList(data){
 
 	// window.location.hash = '/posts';
 	document.first('main').addClass('hidden');
-	post_wrapper.addClass('active').appendChild(ul);
+	post_wrapper.appendChild(ul);
 }
 
 function renderPost(data){
 
 	let post_wrapper = document.body.first('.posts');
 	post_wrapper.removeClass('active').innerHTML = '';
+	post_wrapper.addClass('active');
 
 	let h2 = document.createElement('h2');
 		h2.addClass('post-header');
@@ -149,10 +151,10 @@ function renderPost(data){
 	let div = document.createElement('div');
 		div.addClass('post-body');
 		div.innerHTML = data[0].body;
-		
+
 	// window.location.hash = '/post/'+data[0].id;
 	document.first('main').addClass('hidden');
-	post_wrapper.addClass('active').appendChild(div);
+	post_wrapper.appendChild(div);
 
 }
 
