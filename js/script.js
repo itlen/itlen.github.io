@@ -1,4 +1,3 @@
-
 	Object.prototype.on = function(f,c){return Array.from(this,(i)=>i.addEventListener(f,c));}
 	Object.prototype.find = function(s){return this.querySelectorAll(s);}
 	Object.prototype.first = function(s){if(!s) return this.firstElementChild;return this.querySelector(s);}
@@ -72,35 +71,65 @@
 	// 	document.find('.hidden').removeClass('hidden');
 	// });
 
-	document.bind('a','click',function(e){
-		e.preventDefault();
-		let href = this.getAttribute('href');
-		if (href != '#') {
-			window.location.hash = '/'+href;
-		}
-	})
+var router = function (url) {
 
-	window.addEventListener('hashchange',()=>{
-		var h = this.location.hash.split('/');
-		switch(h[1]){
-			case 'posts':getDataFromUrl('posts');break;
-			case 'post': getDataFromUrl(h[2]);break;
-			default: renderData(); break;
-		}
-	});
+	rout = url.split('/').filter(i=>i!='#'&&i!='');
 
-	var h = this.location.hash.split('/');
-	switch(h[1]){
-		case 'posts': getDataFromUrl('posts'); break;
-		case 'post': getDataFromUrl(h[2]); break;
-		default: document.body.first('.posts').removeClass('active').innerHTML = ''; break;
+	if(rout.length>0) {
+		document.first('.posts').addClass('active').first('.posts-wrapper').innerHTML = '';
+		document.first('main').addClass('hidden');
+	} else {
+		document.first('.posts').removeClass('active').first('.posts-wrapper').innerHTML = '';
+		document.first('main').removeClass('hidden');		
 	}
 
+	switch(rout.length){
+		case 1: getDataFromUrl(rout[0]+'.json');break;
+		case 2: getDataFromUrl('post-'+rout[1]+'.json');break;
+		case 3: getDataFromUrl(rout[2]);break;
+		default:renderData();break;
+	}
 
-var post_wrapper = document.first('.posts');
+	async function getDataFromUrl(url){
+		if(url)
+			await fetch('data/'+url)
+				.then(response => {
+					if(response.status === 200) {
+						response.json().then(d=>{
+							renderData(d);
+						})
+					} else {
+						error(response.status);
+					}
+				}).catch((err)=>console.log(err));	
+		return false;
+	}
+
+	function error(code){
+		document.body.first('.posts')
+					 .addClass('active')
+					 .addClass('error')
+					 .addClass('done')
+					 .first('.posts-wrapper')
+					 .innerHTML = '<h2>'+code+'</1>';
+		window.scrollTo( 0, 1000 );
+	}
+
+	function renderData(data) {
+		if(!data) {
+			document.first('main').removeClass('hidden');
+			document.first('.posts').removeClass('active');
+			return;
+		}
+		if(data.length>1) {renderPostsList(data); return;}
+		else {renderPost(data); return;}
+	}
+
+}
 
 function renderPostsList(data){
 
+	let wrapper = document.first('.posts-wrapper');
 	let ul = document.createElement('ul');
 	ul.addClass('posts-list');
 
@@ -130,57 +159,54 @@ function renderPostsList(data){
 		ul.appendChild(li);
 	});
 
-	post_wrapper.appendChild(ul);
+	wrapper.appendChild(ul);
+	wrapper.parents('.posts').addClass('done');
 }
 
 function renderPost(data){
-
+	let wrapper = document.querySelector('.posts-wrapper');
+	console.dir(wrapper);
 	let h2 = document.createElement('h2');
 		h2.addClass('post-header');
 		h2.innerText = data[0].title;
-	
-	post_wrapper.appendChild(h2);
-	
+		wrapper.appendChild(h2);
+
 	let div = document.createElement('div');
 		div.addClass('post-body');
 		div.innerHTML = data[0].body;
 
-	post_wrapper.appendChild(div);
+	wrapper.appendChild(div);
+	window.scrollTo( 0, 1000 );
+	wrapper.parents('.posts').addClass('done');
 }
+//******************************************************//
 
-function renderData(data) {
-	if(window.location.hash == '') {
-		document.first('main').removeClass('hidden');
-		return;
-	}
-	if(data.length>1) {renderPostsList(data); return;}
-	else {renderPost(data); return;}
-}
+	document.bind('a','click',function(e){
+		e.preventDefault();
+		document.first('.posts').addClass('active').find('.posts-wrapper').innerHTML = '';
+		console.dir('click');
+		if (this.getAttribute('href') != '#') {
+			window.location.hash = '/'+this.getAttribute('href');
+		}
+	})
 
-function getDataFromUrl(url){
+	document.body.removeClass('hidden');
+	router(window.location.hash);
 
-	post_wrapper.removeClass('active').addClass('active').innerHTML = '';
-	document.first('main').addClass('hidden');
+	window.addEventListener('hashchange',()=>{
+		if(!window.location.hash) {
+			window.location.hash = '';
+		}
+		document.first('.posts').addClass('active').find('.posts-wrapper').innerHTML = '';
+		router(window.location.hash);
+	});
 
-	if (url != 'posts') url = 'post-'+url;
-	url += '.json';
 
-	let p = fetch('data/'+url)
-		.then(response => {
-			if(response.status === 200) {
-				response.json().then(d=>{
-					renderData(d);
-				})
-			} else {
-				error404();
-			}
-		}).catch((err)=>console.log(err));	
-	return false;
-}
 
-function error404(){
-	document.body.first('.posts').addClass('active').innerHTML = '<h2>404</1>';
-}
+
+
+
+
 
 
 

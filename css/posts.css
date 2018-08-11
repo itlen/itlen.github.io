@@ -1,23 +1,15 @@
 .posts {
-    /*position: fixed;*/
     background: #f5f5f5;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 48px;
+    position: relative;
     line-height: 2.6;
-    /*overflow-y: scroll; */
-    opacity: 0;
-    transform: scale(.8,.8) translateY(120%);
-    transition: all .4s var(--anim-timimg-func);
+    display: none;
 }
 
 
-.posts:before {
+.posts:not(.done):before {
     content: "";
     position: absolute;
-    top: calc(50% - 24px);
+    top: 24px;
     left: calc(50% - 24px);
     width: 48px;
     height: 48px;
@@ -25,7 +17,6 @@
     border-right: none;
     border-radius: 100%;
     animation: spin 1s ease infinite;
-    z-index: -1;
 }
 
 @keyframes spin{
@@ -33,15 +24,26 @@
 }
 
 .posts.active {
-    opacity: 1;
-    transform: scale(1,1) translateY(0);
+    display: block;
+    padding: 48px 1em;
+    height: calc(100vh - 96px);
 }
 
+.posts.error {
+    height: calc(100vh - 96px);
+}
+
+.posts nav,
 .post-header,
 .post-body,
-.posts-list {
+.posts-list,
+.posts-wrapper {
     margin: auto;
-    max-width: var(--col-5);
+    max-width: 830px;
+}
+
+.posts nav {
+    margin-bottom: 2em;
 }
 
 .post-header {
@@ -49,7 +51,7 @@
 }
 
 .posts-list-item {
-    margin-bottom: 5em;
+    margin-bottom: 8em;
 }
 
 .post-body,
