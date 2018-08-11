@@ -98,10 +98,6 @@
 
 function renderPostsList(data){
 
-	let post_wrapper = document.body.first('.posts');
-	post_wrapper.removeClass('active').innerHTML = '';
-	post_wrapper.addClass('active');
-
 	let ul = document.createElement('ul');
 	ul.addClass('posts-list');
 
@@ -168,6 +164,11 @@ function renderData(data) {
 }
 
 function getDataFromUrl(url){
+
+	let post_wrapper = document.body.first('.posts');
+	post_wrapper.removeClass('active').innerHTML = '';
+	post_wrapper.addClass('active');
+
 	if (url != 'posts') url = 'post-'+url;
 	url += '.json';
 
