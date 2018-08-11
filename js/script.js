@@ -96,6 +96,9 @@
 		default: document.body.first('.posts').removeClass('active').innerHTML = ''; break;
 	}
 
+
+var post_wrapper = document.first('.posts');
+
 function renderPostsList(data){
 
 	let ul = document.createElement('ul');
@@ -127,19 +130,10 @@ function renderPostsList(data){
 		ul.appendChild(li);
 	});
 
-	let post_wrapper = document.body.first('.posts');
-	post_wrapper.removeClass('active').innerHTML = '';
-	post_wrapper.addClass('active');
-
-	document.first('main').addClass('hidden');
 	post_wrapper.appendChild(ul);
 }
 
 function renderPost(data){
-
-	let post_wrapper = document.body.first('.posts');
-	post_wrapper.removeClass('active').innerHTML = '';
-	post_wrapper.addClass('active');
 
 	let h2 = document.createElement('h2');
 		h2.addClass('post-header');
@@ -151,10 +145,7 @@ function renderPost(data){
 		div.addClass('post-body');
 		div.innerHTML = data[0].body;
 
-
-	document.first('main').addClass('hidden');
 	post_wrapper.appendChild(div);
-
 }
 
 function renderData(data) {
@@ -168,9 +159,8 @@ function renderData(data) {
 
 function getDataFromUrl(url){
 
-	let post_wrapper = document.body.first('.posts');
-	post_wrapper.removeClass('active').innerHTML = '';
-	post_wrapper.addClass('active');
+	post_wrapper.removeClass('active').addClass('active').innerHTML = '';
+	document.first('main').addClass('hidden');
 
 	if (url != 'posts') url = 'post-'+url;
 	url += '.json';
