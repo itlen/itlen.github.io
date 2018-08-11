@@ -151,10 +151,7 @@ function renderPost(data){
 		div.addClass('post-body');
 		div.innerHTML = data[0].body;
 
-	let post_wrapper = document.body.first('.posts');
-	post_wrapper.removeClass('active').innerHTML = '';
-	post_wrapper.addClass('active');
-	
+
 	document.first('main').addClass('hidden');
 	post_wrapper.appendChild(div);
 
