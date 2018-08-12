@@ -26,7 +26,7 @@
 .posts.active {
     display: block;
     padding: 48px 1em;
-    height: calc(100vh - 96px);
+    min-height: calc(100vh - 96px);
 }
 
 .posts.error {

@@ -17,7 +17,6 @@
 				p=p.parentElement;
 			}
 		}
-		
 		return a;
 	};
 	Object.prototype.bind = function(cssSelectors,events,callback,debug=false){
@@ -30,7 +29,6 @@
 			});
 		});
 	}
-
 	Object.prototype.toggleClass = function(className){
 		try { this.classList.toggle(className);}
 		catch {Array.from(this, (i)=>i.classList.toggle(className));}
@@ -55,149 +53,118 @@
 		return Array.from(this.parentElement.childNodes).filter(i=>i.nodeName != '#text' && i != this && i.matches(s));
 	};
 
-	// document.bind('.col','click',function(e){
-	// 	if(this.classList.contains('modal')) return;
-	// 	this.addClass('modal')
-	// 		.parents('.row, body')
-	// 		.addClass('modal')
-	// 		.returnContext(this)
-	// 		.siblings('.bio')
-	// 		.addClass('hidden')
-	// 		.on('click',function(e){});
-	// });	
+function Wrapper (w,m){
 
-	// document.find('.close-control').on('click',function(){
-	// 	document.find('.modal').removeClass('modal');
-	// 	document.find('.hidden').removeClass('hidden');
-	// });
+	this.init = function(html){
+		this.active(html);
+		w.bind('a','click',function(e){
+			e.preventDefault();
+			let href = '/'+this.getAttribute('href')
+			if ( href != '/#') {
+				window.location.hash = href;
+			}		
+		});
+	}
+
+	this.active = function(html){
+		m.addClass('hidden');
+		w.addClass('active')
+			.first('.posts-wrapper')
+			.innerHTML = html;
+		w.addClass('done');
+	}
+	
+	this.passive = function(){
+		m.removeClass('hidden');
+		w.removeClass('active')
+			.removeClass('error')
+			.removeClass('done')
+			.first('.posts-wrapper')
+			.innerHTML = "";
+	}
+	
+	this.prepare = function(){
+		this.passive();
+		w.addClass('active');
+	}
+}
+
+var wrapper = new Wrapper(document.first('.posts'),document.first('main'));
+
+
+
+
+function Post (data) {
+	this.html = '<ul class="posts-list">';
+	data.forEach(i=>{
+		this.html += '<li class="posts-list-item"><h2>'+i.title+'</h2><div class="post-spoiler">'+i.body+'</div>';
+		if (data.length>1) this.html += '<a href="post/'+i.id+'">read more</a>';
+		this.html += `</li>`;
+	});
+	this.html += '</ul>';
+	this.render = function () {
+		if(!this.html) {
+			wrapper.passive();
+			return;
+		}
+		wrapper.init(this.html);
+	}
+}
+
+
+
+
+
+
 
 var router = function (url) {
 
-	rout = url.split('/').filter(i=>i!='#'&&i!='');
+	let rout = url.split('/').filter(i=>i!='#'&&i!='');
 
-	if(rout.length>0) {
-		document.first('.posts').addClass('active').first('.posts-wrapper').innerHTML = '';
-		document.first('main').addClass('hidden');
-	} else {
-		document.first('.posts').removeClass('active').first('.posts-wrapper').innerHTML = '';
-		document.first('main').removeClass('hidden');		
+	if(rout.length<1) {
+		wrapper.passive();
+		return;
 	}
 
 	switch(rout.length){
-		case 1: getDataFromUrl(rout[0]+'.json');break;
-		case 2: getDataFromUrl('post-'+rout[1]+'.json');break;
+		case 1: getDataFromUrl(rout[0]);break;
+		case 2: getDataFromUrl('post-'+rout[1]);break;
 		case 3: getDataFromUrl(rout[2]);break;
-		default:renderData();break;
+		default:break;
 	}
 
 	async function getDataFromUrl(url){
 		if(url)
-			await fetch('data/'+url)
-				.then(response => {
-					if(response.status === 200) {
-						response.json().then(d=>{
-							renderData(d);
+			await fetch('data/'+url+'.json')
+				.then(res => {
+					if(res.status === 200) {
+						res.json().then(data=>{
+							new Post(data).render();
 						})
 					} else {
-						error(response.status);
+						wrapper.active('<h2>'+res.status+'</h2><p class="font-16">Bad url: '+window.location.href+'</p>');
 					}
 				}).catch((err)=>console.log(err));	
 		return false;
 	}
-
-	function error(code){
-		document.body.first('.posts')
-					 .addClass('active')
-					 .addClass('error')
-					 .addClass('done')
-					 .first('.posts-wrapper')
-					 .innerHTML = '<h2>'+code+'</1>';
-		window.scrollTo( 0, 1000 );
-	}
-
-	function renderData(data) {
-		if(!data) {
-			document.first('main').removeClass('hidden');
-			document.first('.posts').removeClass('active');
-			return;
-		}
-		if(data.length>1) {renderPostsList(data); return;}
-		else {renderPost(data); return;}
-	}
-
 }
 
-function renderPostsList(data){
 
-	let wrapper = document.first('.posts-wrapper');
-	let ul = document.createElement('ul');
-	ul.addClass('posts-list');
-
-	data.forEach(item=>{
-		let li = document.createElement('li');
-			li.addClass('posts-list-item');
-
-		let h2 = document.createElement('h2');
-			h2.innerText = item.title;
-
-		let a = document.createElement('a');
-			a.setAttribute('href','post/'+item.id);
-			a.innerText = 'read more';
-			a.addEventListener('click',function(e){
-				e.preventDefault();
-				window.location.hash = '/'+this.getAttribute('href');
-			});
-
-		let div = document.createElement('div');
-			div.addClass('post-spoiler');
-			div.innerHTML = item.body;
-
-		li.appendChild(h2);
-		li.appendChild(div);
-		li.appendChild(a);
-
-		ul.appendChild(li);
-	});
-
-	wrapper.appendChild(ul);
-	wrapper.parents('.posts').addClass('done');
-}
-
-function renderPost(data){
-	let wrapper = document.querySelector('.posts-wrapper');
-	console.dir(wrapper);
-	let h2 = document.createElement('h2');
-		h2.addClass('post-header');
-		h2.innerText = data[0].title;
-		wrapper.appendChild(h2);
-
-	let div = document.createElement('div');
-		div.addClass('post-body');
-		div.innerHTML = data[0].body;
-
-	wrapper.appendChild(div);
-	window.scrollTo( 0, 1000 );
-	wrapper.parents('.posts').addClass('done');
-}
 //******************************************************//
 
 	document.bind('a','click',function(e){
 		e.preventDefault();
-		document.first('.posts').addClass('active').find('.posts-wrapper').innerHTML = '';
-		console.dir('click');
-		if (this.getAttribute('href') != '#') {
-			window.location.hash = '/'+this.getAttribute('href');
-		}
-	})
+		let href = '/'+this.getAttribute('href')
+		if ( href != '/#') {
+			window.location.hash = href;
+		}		
+	});
 
 	document.body.removeClass('hidden');
+	document.body.removeClass('2');
 	router(window.location.hash);
 
 	window.addEventListener('hashchange',()=>{
-		if(!window.location.hash) {
-			window.location.hash = '';
-		}
-		document.first('.posts').addClass('active').find('.posts-wrapper').innerHTML = '';
 		router(window.location.hash);
 	});
 

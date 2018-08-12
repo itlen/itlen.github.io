@@ -8,13 +8,8 @@
     <title>Document</title>
     <meta name="description" content="Description of the page less than 150 characters">
 
-    <link href="css/normalize.css" rel="preload" as="style">
-    <link href="css/layout.css" rel="preload" as="style">
-    <link href="css/typograph.css" rel="preload" as="style">
-    <link href="css/posts.css" rel="preload" as="style">
-    <link href="css/style.css" rel="preload" as="style">
-    <link href="css/mobile.css" rel="preload" as="style">
-    <link href="js/script.js" rel="preload" as="script">
+<!--     <link href="css/build.style.css" rel="preload" as="style">
+    <link href="js/build.script.js" rel="preload" as="script"> -->
 
     <link href="manifest.json" rel="manifest">    
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -61,7 +56,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
     <![endif]-->
 </head>
-<body class="hidden">
+<body class="hidden 1 2 3">
     <style>.hidden{display: none;}</style>
     <main role="main">
         <div class="row">
@@ -144,14 +139,16 @@
     </div>
     <footer role="contentinfo"></footer>
     <div class="close-control">Esc, tap or click to exit</div>
-
+    <!-- build:css -->
     <link href="css/normalize.css" rel="stylesheet">
     <link href="css/typograph.css" rel="stylesheet">
     <link href="css/posts.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/layout.css" rel="stylesheet">
     <link href="css/mobile.css" rel="stylesheet">
+    <!-- endbuild -->
+    <!-- build:css -->
     <script src="js/script.js" defer></script>
-
+    <!-- endbuild -->
 </body>
 </html>
