@@ -96,54 +96,29 @@ App.prototype.getData = function(url){
 
 	this.active();
 
-	if('caches' in self) {
-		console.clear();
-		console.dir('есть кэши');
-		caches.open('myCache').then(cache=>{
-			cache.match(url).then( response => { 
-				console.dir('кэш резолвится c '+response);
-				if(response.status == 200) {
-					response.json().then(data=>{
-						this.done();
-						console.dir('отдали из кэша');
-						this.renderPost(data);
-					})
-				}
-			}).catch(()=>{
-				console.dir('нет в кэше, идем в сеть');
-				fetch(url)
-					.then(response => {
-						if(response.status == 200) {
-							console.dir('все ок, овтет 200');
-							let resClone = response.clone();
+	fetch(url)
+		.then(response => {
+			if(response.status == 200) {
 
-							response.json().then(data=>{
-								this.done();
-								console.dir('отдали из сети');
-								this.renderPost(data);
-							})
+				response.json().then(data=>{
+					this.done();
+					console.dir('отдали из сети');
+					this.renderPost(data);
+				})
 
-							cache.put(url,resClone).then(e=>{
-								console.dir('И положили в кэш '+url+' + '+resClone);
-							});
+			} else {
+				console.dir(response.status+' ошибка');
+				this.error('<h2>'+response.status+'</h2><br>Bad url: '+window.location.href);
+			}
+		}).catch((err)=>{
+			msg = '<code>'+err+'<br>';
+			msg += 'Net type: '+navigator.connection.effectiveType+'<br>';
+			msg += 'RTT: '+navigator.connection.rtt+'<br>';
+			msg += 'You online: '+navigator.onLine+'</code><br><br>';
+			msg += 'Проблема с сетью. Ресурс <u>'+url+'</u> еще не в кэше';
+			this.error(msg);
+		});				
 
-						} else {
-							console.dir(response.status+' ошибка');
-							this.error('<h2>'+response.status+'</h2><br>Bad url: '+window.location.href);
-						}
-					}).catch((err)=>{
-						msg = '<code>'+err+'<br>';
-						msg += 'Net type: '+navigator.connection.effectiveType+'<br>';
-						msg += 'RTT: '+navigator.connection.rtt+'<br>';
-						msg += 'You online: '+navigator.onLine+'</code><br><br>';
-						msg += 'Проблема с сетью. Ресурс <u>'+url+'</u> еще не в кэше';
-						this.error(msg);
-					});				
-			});
-		});
-	} else {
-
-	}
 }
 
 const app = new App('posts');
