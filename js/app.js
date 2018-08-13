@@ -165,7 +165,7 @@ const app = new App('posts');
 		});
 	});
 	
-
+	document.body.className = '';
 
 
 
