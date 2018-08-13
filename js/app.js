@@ -157,11 +157,13 @@ const app = new App('posts');
 
 	document.querySelectorAll('a').forEach((item)=>{
 		item.addEventListener('click',function(e){
-			e.preventDefault();
 			let href = this.getAttribute('href');
-			if ( href != '#') {
+			if ( href != '#' && href.indexOf('data') < 0) {
+				e.preventDefault();
 				window.location.hash = '/'+href;
-			}	
+			} else {
+				console.dir('data');
+			}
 		});
 	});
 	
