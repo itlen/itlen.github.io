@@ -8,7 +8,7 @@ class KeyboardMenu {
 		this.viewport = args.viewport || window.innerWidth;
 		this.mode = args.mode || 'horizontal';
 		if(args.class) this.classPrefix = args.class;
-		Nav.count +=1;
+		KeyboardMenu.count +=1;
 
 		this.hideSiblingsWhenItemIsActive = args.hideSiblings || false;
 		this.menu = document.querySelector(args.wrapper);
@@ -26,13 +26,13 @@ class KeyboardMenu {
 
 		this.menu.querySelectorAll('ul').forEach((item,index)=>{
 			item.setAttribute('role','menu');
-			item.setAttribute('id','menu-'+Nav.count+'-'+index);
+			item.setAttribute('id','menu-'+KeyboardMenu.count+'-'+index);
 		});
 
 		this.menu.querySelectorAll('li').forEach((item,index)=>{
 
 			item.classList.add('menu-item');
-			item.setAttribute('id','menu-item-'+Nav.count+'-'+index);
+			item.setAttribute('id','menu-item-'+KeyboardMenu.count+'-'+index);
 
 			item.firstElementChild.classList.add('menu-item-link');
 			item.firstElementChild.setAttribute('role','menuitem');
