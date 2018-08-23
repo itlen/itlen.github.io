@@ -137,7 +137,7 @@ class App {
 
 							} else {
 								console.dir(response.status+' ошибка');
-								this.setState('done','<h2>'+response.status+'</h2><br>Bad url: '+window.location.href+'<h1 style="font-size: 10em;line-height: 1;margin: .67em 0;font-weight: 900;">WE ARE SORRY</h1><br><br><br><br><br><br><p>Лишить разработчика одного пива в пятницу? <a href="#">Да</a>  <a href="#">Нет</a></p>');
+								this.setState('done','<h2>'+response.status+'</h2><br>Bad url: '+window.location.href+'<h1 style="font-size: 10em;line-height: 1;margin: .67em 0;font-weight: 900;">WE ARE SORRY</h1></p>');
 							}
 
 						}).catch((err)=>{
