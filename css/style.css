@@ -102,20 +102,6 @@ li {
 }
 
 
-.bio-separator {
-	background-color: red;
-	height: 180px;
-	align-items: stretch!important;
-	height: var(--col-2);
-}
-
-.bio-separator div {
-	background-color: white;
-	margin: 2px;
-	flex: 1 0 calc(50% - 4px); 
-}
-
-
 
 
 
