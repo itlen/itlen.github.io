@@ -10,6 +10,7 @@
 
 <!--     <link href="css/build.style.css" rel="preload" as="style">
     <link href="js/build.script.js" rel="preload" as="script"> -->
+    <link href="css/fonts.css" rel="stylesheet">
 
     <link href="manifest.json" rel="manifest">    
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -56,7 +57,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
     <![endif]-->
 </head>
-<body class="o">
+<body class="o hideapp">
     <style>body.o{opacity: 0;}</style>
     <main role="main">
         <div class="row">
@@ -65,7 +66,12 @@
                 <img src="img/man.svg" alt="my photo" class="logo-img"/>
             </div>
             <p class="bio">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora quibusdam, minus tenetur non fugit recusandae beatae cum nisi delectus earum voluptatem necessitatibus. Fuga tempora, nesciunt laudantium inventore quos voluptas ut.</p>
-            <div class="bio-separator"></div>
+            <div class="bio-separator flex">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
             <div class="contacts-block">
                 <h2 class="contacts">Contacts</h1>
                 <ul class="contacts-block-list" data-note="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni exercitationem est molestiae, libero quia, asperiores possimus maiores earum quam eos officia esse voluptatum veritatis blanditiis quod reiciendis aliquam ullam animi temporibus recusandae iste illo facilis consequuntur neque. Veritatis id tenetur iusto aliquam inventore rem odit quos non fugit maiores. Neque!">
@@ -96,8 +102,8 @@
                 <p class="font-16">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni exercitationem est molestiae, libero quia, asperiores possimus maiores earum quam eos officia esse voluptatum veritatis blanditiis quod reiciendis aliquam ullam animi temporibus recusandae iste illo facilis consequuntur neque. Veritatis id tenetur iusto aliquam inventore rem odit quos non fugit maiores. Neque!</p>
                 <ul>
                     <li><a href="post/1">Lorem ipsum dolor.</a></li>
-                    <li><a href="data/rampage/index.html">Aperiam, voluptatibus, possimus.</a></li>
-                    <li><a href="#">Facere provident, doloremque.</a></li>
+                    <li><a href="examples/rampage/index.html">Aperiam, voluptatibus, possimus.</a></li>
+                    <li><a href="examples/keyboardmenu/index.html">Keyboard acessibility nav menu</a></li>
                     <li><a href="#">Optio, pariatur, quam!</a></li>
                     <li><a href="#">Architecto, odio facilis.</a></li>
                 </ul>
@@ -148,8 +154,9 @@
     <link href="css/mobile.css" rel="stylesheet">
     <!-- endbuild -->
     <!-- build:css -->
+    <!-- <script src="js/app.js" defer></script> -->
+    <script src="js/class.app.js" defer></script>
     <!-- <script src="js/script.js" defer></script> -->
-    <script src="js/app.js" defer></script>
     <!-- endbuild -->
 </body>
 </html>
