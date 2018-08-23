@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Montserrat ExtraLight'), local('Montserrat-ExtraLight'),
+       url('../fonts/montserrat-v12-cyrillic-ext_latin-200.woff2') format('woff2'),
+       url('../fonts/montserrat-v12-cyrillic-ext_latin-200.woff') format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Montserrat Regular'), local('Montserrat-Regular'),
+       url('../fonts/montserrat-v12-cyrillic-ext_latin-regular.woff2') format('woff2'),
+       url('../fonts/montserrat-v12-cyrillic-ext_latin-regular.woff') format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Montserrat Bold'), local('Montserrat-Bold'),
+       url('../fonts/montserrat-v12-cyrillic-ext_latin-700.woff2') format('woff2'),
+       url('../fonts/montserrat-v12-cyrillic-ext_latin-700.woff') format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Montserrat Black'), local('Montserrat-Black'),
+       url('../fonts/montserrat-v12-cyrillic-ext_latin-900.woff2') format('woff2'),
+       url('../fonts/montserrat-v12-cyrillic-ext_latin-900.woff') format('woff');
+  font-display: swap;
+}
+
+h1 {
+    font-size: 7em;
+    margin: .67em 0;
+    font-weight: 900;
+    line-height: 1;
+}

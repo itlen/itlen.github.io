@@ -4,7 +4,6 @@
 	"orientation": "portrait-primary",
 	"dir": "ltr",
 	"start_url": "/?utm_source=homescreen",
-    "scope": "/",
   	"display": "standalone",
   	"description": "A simply app's descriptiption.",
  	"background_color": "#FFFFFF",

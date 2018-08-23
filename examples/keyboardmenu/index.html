@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=yes, viewport-fit=cover">
+    <title>A11y keyboard menu</title>
+    <link href="css/typograph.css" rel="preload" as="style">
+    <link href="css/style.css" rel="preload" as="style">
+    <link href="js/class.script.js" rel="preload" as="script">
+</head>
+<body>
+        <header role="banner">
+            <nav id="main-navigation" aria-label="Main navigation">
+                <ul class="menu flex">
+                    <li>
+                        <a href="link-1">Menu item</a>
+                    </li>
+                    <li>
+                        <a href="link-2" title="хуй ты">Second item</a>
+                    </li>
+                    <li>
+                        <a href="2">Expandable menu item</a>
+                        <ul>
+                            <li>
+                                <a href="1">Submenu</a>
+                                <ul>
+                                    <li>
+                                        <a href="1">Still one</a>
+                                    </li>
+                                    <li>
+                                        <a href="2">Again</a>
+                                    </li>
+                                    <li>
+                                        <a href="3">… and again</a>
+                                        <ul>
+                                            <li>
+                                                <a href="1">Sub submenu</a>
+                                            </li>
+                                            <li>
+                                                <a href="2">Still one</a>
+                                            </li>
+                                            <li>
+                                                <a href="3">And the last</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="2">Almost last item</a>
+                                    </li>
+                                    <li>
+                                        <a href="3">Last item</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="2">Link</a>
+                            </li>
+                            <li>
+                                <a href="submenu-2">Here is a submenu</a>
+                                <ul>
+                                    <li>
+                                        <a href="1">Hi tou there</a>
+                                    </li>
+                                    <li>
+                                        <a href="2">Submenu item</a>
+                                    </li>
+                                    <li>
+                                        <a href="3">Lst submenu item</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="link-3">Third link</a>
+                    </li>
+                   <li>
+                        <a href="link-33">Fourth link</a>
+                        <ul>
+                            <li>
+                                <a href="1">Submenu</a>
+                                <ul>
+                                    <li>
+                                        <a href="1">Still one submenu</a>
+                                    </li>
+                                    <li>
+                                        <a href="2">Again</a>
+                                    </li>
+                                    <li>
+                                        <a href="3">And here</a>
+                                        <ul>
+                                            <li>
+                                                <a href="1">Sub submenu item</a>
+                                            </li>
+                                            <li>
+                                                <a href="2">Sub submenu item</a>
+                                            </li>
+                                            <li>
+                                                <a href="3">Sub submenu item</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="2">Almost last</a>
+                                    </li>
+                                    <li>
+                                        <a href="3">Realy last item</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="2">Link</a>
+                            </li>
+                            <li>
+                                <a href="submenu-2">And here is a submenu</a>
+                                <ul>
+                                    <li>
+                                        <a href="1">Submenu item</a>
+                                    </li>
+                                    <li>
+                                        <a href="2">Submenu item</a>
+                                    </li>
+                                    <li>
+                                        <a href="3">Ok, stop it now!</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav> 
+        </header>
+            <p class="menu-hint">Use key arrows:
+<br><br>
+to navigate top level menu:<br>
+<code>Right or left key arrow for next or previous item;<br>
+Down key arrow to expand submenu for current item (if it has);</code>
+<br><br>
+to navigate submenu:<br>
+<code>Up and down keys arrow for next and previous item;<br>
+Right key arrow to expand submenu for current item (if it has);<br>
+Left arrow or Esc to roll up current submenu item;</code></p>
+        <aside role="complementary" aria-label="Left sidebar">
+            <nav id="sec-navigation" aria-label="Second navigation">
+                 <ul class="menu flex">
+                    <li>
+                        <a href="link-1">Menu item</a>
+                    </li>
+                    <li>
+                        <a href="link-2" title="хуй ты">Second item</a>
+                    </li>
+                    <li>
+                        <a href="2">Expandable menu item</a>
+                        <ul>
+                            <li>
+                                <a href="1">Submenu</a>
+                                <ul>
+                                    <li>
+                                        <a href="1">Still one</a>
+                                    </li>
+                                    <li>
+                                        <a href="2">Again</a>
+                                    </li>
+                                    <li>
+                                        <a href="3">… and again</a>
+                                        <ul>
+                                            <li>
+                                                <a href="1">Sub submenu</a>
+                                            </li>
+                                            <li>
+                                                <a href="2">Still one</a>
+                                            </li>
+                                            <li>
+                                                <a href="3">And the last</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="2">Almost last item</a>
+                                    </li>
+                                    <li>
+                                        <a href="3">Last item</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="2">Link</a>
+                            </li>
+                            <li>
+                                <a href="submenu-2">Here is a submenu</a>
+                                <ul>
+                                    <li>
+                                        <a href="1">Hi tou there</a>
+                                    </li>
+                                    <li>
+                                        <a href="2">Submenu item</a>
+                                    </li>
+                                    <li>
+                                        <a href="3">Lst submenu item</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="link-3">Third link</a>
+                    </li>
+                   <li>
+                        <a href="link-33">Fourth link</a>
+                        <ul>
+                            <li>
+                                <a href="1">Submenu</a>
+                                <ul>
+                                    <li>
+                                        <a href="1">Still one submenu</a>
+                                    </li>
+                                    <li>
+                                        <a href="2">Again</a>
+                                    </li>
+                                    <li>
+                                        <a href="3">And here</a>
+                                        <ul>
+                                            <li>
+                                                <a href="1">Sub submenu item</a>
+                                            </li>
+                                            <li>
+                                                <a href="2">Sub submenu item</a>
+                                            </li>
+                                            <li>
+                                                <a href="3">Sub submenu item</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="2">Almost last</a>
+                                    </li>
+                                    <li>
+                                        <a href="3">Realy last item</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="2">Link</a>
+                            </li>
+                            <li>
+                                <a href="submenu-2">And here is a submenu</a>
+                                <ul>
+                                    <li>
+                                        <a href="1">Submenu item</a>
+                                    </li>
+                                    <li>
+                                        <a href="2">Submenu item</a>
+                                    </li>
+                                    <li>
+                                        <a href="3">Ok, stop it now!</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>    
+            <nav role="navigation" aria-label="Context navigation"></nav>
+        </aside>
+        <main role="main"></main>
+        <footer role="contentinfo"></footer>
+    
+    <link href="css/typograph.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/class.script.js" defer></script>
+</body>
+</html>

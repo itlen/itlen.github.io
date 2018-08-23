@@ -12,7 +12,8 @@ html{
     -moz-font-feature-settings: "liga" on;
     color: #4f4f4f;
 
-    --base-width: 12.5%;
+    --col-count: 8;
+    --base-width: 100% / var(--col-count);
     --col-1:calc(var(--base-width));
     --col-2:calc(var(--col-1)*2);
     --col-3:calc(var(--col-1)*3);
@@ -21,6 +22,14 @@ html{
     --col-6:calc(var(--col-1)*6);
     --col-7:calc(var(--col-1)*7);
     --col-8:calc(var(--col-1)*8);
+    --col-9:calc(var(--col-1)*9);
+    --col-10:calc(var(--col-1)*10);
+    --col-11:calc(var(--col-1)*11);
+    --col-12:calc(var(--col-1)*12);
+    --col-13:calc(var(--col-1)*13);
+    --col-14:calc(var(--col-1)*14);
+    --col-15:calc(var(--col-1)*15);
+    --col-16:calc(var(--col-1)*16);
     --sub-col:calc(var(--col-1) / 2);
     --wire-color: #e9e9e9;
     --anim-timimg-func: cubic-bezier(0.075, 0.82, 0.165, 1);

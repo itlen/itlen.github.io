@@ -1,4 +1,4 @@
-body.hideapp .posts {display: none;}
+.posts {display: none;}
 body.hideapp main {display: block;}
 
 body.active main,
@@ -36,6 +36,7 @@ body.done .posts {
     position: relative;
     line-height: 2.4rem;
     font-size: 1.6rem;
+    margin-bottom: 10em;
 }
 
 .breadcrumbs,
@@ -52,6 +53,10 @@ body.done .posts {
 .post-title {
     font-size: 3.2rem;
     margin: 0 0 .5em 0;
+}
+
+.post-body {
+    max-width: 720px;
 }
 
 .posts a {
