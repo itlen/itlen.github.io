@@ -58,7 +58,7 @@ class KeyboardMenu {
 					case this.keys.right: (p) ? this.setActiveItem(this.nextItem) : this.fadeInCurrentMenuItem(); break;
 					case this.keys.down: (p) ? this.fadeInCurrentMenuItem() : this.setActiveItem(this.nextItem); break;
 					case this.keys.left: (p) ? this.setActiveItem(this.prevItem) : this.fadeOutCurrentMenuItem(); break;
-					case this.keys.esc: break;
+					case this.keys.esc: this.fadeOutCurrentMenuItem(); break;
 			}
 
 		});
