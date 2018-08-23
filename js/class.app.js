@@ -48,7 +48,7 @@ class App {
 			});
 		}
 		
-		this.post.innerHTML = html;
+		this.post.innerHTML = html.replace('<script>','');
 
 		this.bind('a','click',(e)=>{
 			let href = e.target.getAttribute('href');
