@@ -14,3 +14,4 @@ jspm_packages
 .npm
 .node_repl_history
 package-lock.json
+project/dev
